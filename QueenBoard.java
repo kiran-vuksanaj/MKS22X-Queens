@@ -6,6 +6,14 @@ public class QueenBoard{
   }
 
   private boolean addQueen(int r,int c){
+    //ADD ATTACK ON ROWS
+    for(int i=0;i<board[r].length;i++){
+      board[r][i] += 1;
+    }
+    //ADD ATTACK ON COLS
+    for(int i=0;i<board.length;i++){
+      board[i][c] += 1;
+    }
     return false;
   }
   private boolean removeQueen(int r,int c){
@@ -27,7 +35,7 @@ public class QueenBoard{
   *excludes the character up to the *)
   */
   public String toString(){
-    return ""
+    return "";
   }
 
 
