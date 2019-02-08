@@ -14,6 +14,24 @@ public class QueenArray{
     return false;
   }
   public int countSolutions(){
-    return -1;
+    if(colVals.size() != 0) throw new IllegalStateException("queen array not empty");
+    return counter();
+  }
+  private int counter(){
+    if(colVals.size() == size) return 1;
+    else{
+      int out = 0;
+      for(int i=0;i<size;i++){
+        if(!(underAttack(i))){
+          colVals.add(i);
+          out += counter();
+          colVals.remove(colVals.size()-1);
+        }
+      }
+      return out;
+    }
+  }
+  private boolean underAttack(int i){
+    return false;
   }
 }
