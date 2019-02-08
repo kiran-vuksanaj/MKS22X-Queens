@@ -39,6 +39,8 @@ public class QueenArray{
     return false;
   }
   private boolean conflictBetween(int row1,int col1,int row2,int col2){
-    return false;
+    return row1==row2 || col1==col2 ||
+           row2-col2 == row1-col1 ||
+           row2+col2 == row1+col1;
   }
 }
