@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 public class QueenArray{
   public static void main(String[] args){
-    //space for testing
+    QueenArray q = new QueenArray(3);
+    System.out.println(q.countSolutions());
+    QueenArray q8 = new QueenArray(8);
+    System.out.println(q8.countSolutions());
   }
   private ArrayList<Integer> colVals;
   private int size;
