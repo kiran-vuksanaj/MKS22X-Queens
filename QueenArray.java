@@ -48,6 +48,18 @@ public class QueenArray{
       return out;
     }
   }
+  public String toString(){
+    String out = "";
+    for(int i=0;i<size;i++){
+      for(int j=0;j<size;j++){
+        if(colVals.size() > i && colVals.get(i)==j){
+          out += "Q";
+        }else out += ".";
+      }
+      out += "\n";
+    }
+    return out;
+  }
   private boolean underAttack(int col){
     int row = colVals.size();
     for(int rowInd = 0; rowInd<colVals.size(); rowInd++){
