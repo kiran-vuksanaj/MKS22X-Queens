@@ -2,9 +2,13 @@ import java.util.*;
 public class QueenBoard{
   public static void main(String[] args){
     QueenBoard q = new QueenBoard(8);
+    System.out.println(q.countSolutions());
+    System.out.println(q);
     System.out.println(q.solve());
     System.out.println(q);
     QueenBoard q3 = new QueenBoard(3);
+    System.out.println(q3.countSolutions());
+    System.out.println(q3);
     System.out.println(q3.solve());
     System.out.println(q3);
   }
@@ -115,8 +119,14 @@ public class QueenBoard{
     }
     return out;
   }
-
-
+  private boolean isBoardClear(){
+    for(int[] row:board){
+      for(int i:row){
+        if(i != 0) return false;
+      }
+    }
+    return true;
+  }
 
   /**
   *@return false when the board is not solveable and leaves the board filled with zeros;
@@ -127,6 +137,7 @@ public class QueenBoard{
 
   */
   public boolean solve(){
+    if(!(isBoardClear())) throw new IllegalStateException("non-clear board");
     return solver(0);
   }
   private boolean solver(int row){
@@ -149,6 +160,7 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
+    if(!(isBoardClear())) throw new IllegalStateException("non-clear board");
     return counter(0);
   }
   private int counter(int row){
