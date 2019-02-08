@@ -6,6 +6,8 @@ public class QueenBoard{
   }
 
   private boolean addQueen(int r,int c){
+    //SPECIAL DESIGNATION: Queens marked by a negative value
+    board[r][c] *= -1;
     for(int i=0;i<board.length;i++){
       for(int j=0;j<board[i].length;j++){
         if((r==i)||  //same row
@@ -13,13 +15,18 @@ public class QueenBoard{
            (Math.abs(r-c)==Math.abs(i-j))|| //same backslash diagonal
            (r+c == i+j)) //same forward slash diagonal
         {
-          board[i][j] += 1;
+          //SPECIAL DESIGNATION: for Queen marked locations, there are negative values
+          //to compensate, statement x/abs(x) is used to add -1 to negatives and +1 to positives
+          board[i][j] += (board[i][j] / Math.abs(board[i][j]));
         }
       }
     }
     return true;
   }
   private boolean removeQueen(int r,int c){
+    //SPECIAL DESIGNATION: Queens marked by a negative value; check and undo
+    if(board[r][c] >= 0) throw new IllegalArgumentException("no queen at r:"+r+" c:"+c);
+    board[r][c] *= -1;
     for(int i=0;i<board.length;i++){
       for(int j=0;j<board[i].length;j++){
         if((r==i)||  //same row
@@ -27,7 +34,9 @@ public class QueenBoard{
            (Math.abs(r-c)==Math.abs(i-j))|| //same backslash diagonal
            (r+c == i+j)) //same forward slash diagonal
         {
-          board[i][j] -= 1;
+          //SPECIAL DESIGNATION: for Queen marked locations, there are negative values
+          //to compensate, statement x/abs(x) is used to add -1 to negatives and +1 to positives
+          board[i][j] -= (board[i][j] / Math.abs(board[i][j]));
         }
       }
     }
