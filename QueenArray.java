@@ -1,10 +1,22 @@
 import java.util.ArrayList;
 public class QueenArray{
   public static void main(String[] args){
-    QueenArray q = new QueenArray(3);
-    System.out.println(q.countSolutions());
-    QueenArray q8 = new QueenArray(8);
-    System.out.println(q8.countSolutions());
+    if(args.length >= 1){
+      int size = Integer.parseInt(args[0]);
+      QueenArray q = new QueenArray(size);
+      System.out.print(size+": ");
+      System.out.print(q.countSolutions()+", ");
+      System.out.println(q.solve());
+      System.out.println(q);
+    }else{
+      for(int i=0;i<20;i++){
+        QueenArray q = new QueenArray(i);
+        System.out.print(i+": ");
+        System.out.print(q.countSolutions()+", ");
+        System.out.println(q.solve());
+        System.out.println(q);
+      }
+    }
   }
   private ArrayList<Integer> colVals;
   private int size;
