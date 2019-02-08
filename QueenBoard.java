@@ -20,9 +20,10 @@ public class QueenBoard{
   }
 
   private boolean addQueen(int r,int c){
+    //return false if space is under attack
+    if(board[r][c] != 0) return false;
     //SPECIAL DESIGNATION: Queens marked by a negative value
-    board[r][c] *= -1;
-    board[r][c] -= 1;
+    board[r][c] = -1;
     for(int i=0;i<board.length;i++){
       for(int j=0;j<board[i].length;j++){
         if(((r==i)||  //same row
@@ -43,7 +44,7 @@ public class QueenBoard{
   }
   private boolean removeQueen(int r,int c){
     //SPECIAL DESIGNATION: Queens marked by a negative value; check and undo
-    if(board[r][c] >= 0) throw new IllegalArgumentException("no queen at r:"+r+" c:"+c);
+    if(board[r][c] >= 0) return false;
     board[r][c] *= -1;
     for(int i=0;i<board.length;i++){
       for(int j=0;j<board[i].length;j++){
@@ -146,10 +147,8 @@ public class QueenBoard{
       return true;
     }else{
       for(int col=0;col<board[row].length;col++){
-        if(board[row][col]==0){
-          if(addQueen(row,col) && solver(row+1)) return true;
-          else removeQueen(row,col);
-        }
+        if(addQueen(row,col) && solver(row+1)) return true;
+        removeQueen(row,col);
       }
       return false;
     }
@@ -168,11 +167,10 @@ public class QueenBoard{
     else{
       int out = 0;
       for(int col=0;col<board[row].length;col++){
-        if(board[row][col]==0){
-          addQueen(row,col);
+        if(addQueen(row,col)){
           out += counter(row+1);
-          removeQueen(row,col);
         }
+        removeQueen(row,col);
       }
       return out;
     }
