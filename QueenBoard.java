@@ -1,3 +1,4 @@
+import java.util.*;
 public class QueenBoard{
   public static void main(String[] args){
     QueenBoard q = new QueenBoard(8);
@@ -10,25 +11,32 @@ public class QueenBoard{
     //TESTING ADDQUEEN,REMOVEQUEEN
     addQueen(2,3);
     System.out.println(this);
+    printBoard();
     addQueen(7,6);
     System.out.println(this);
+    printBoard();
     addQueen(7,7);
     System.out.println(this);
+    printBoard();
   }
 
   private boolean addQueen(int r,int c){
     //SPECIAL DESIGNATION: Queens marked by a negative value
     board[r][c] *= -1;
+    board[r][c] -= 1;
     for(int i=0;i<board.length;i++){
       for(int j=0;j<board[i].length;j++){
-        if((r==i)||  //same row
+        if(((r==i)||  //same row
            (c==j)||  //same column
-           (Math.abs(r-c)==Math.abs(i-j))|| //same backslash diagonal
+           (r-c==i-j)|| //same backslash diagonal
            (r+c == i+j)) //same forward slash diagonal
+           && (!(r==i && c==j))) //not the queen itself
         {
           //SPECIAL DESIGNATION: for Queen marked locations, there are negative values
           //to compensate, statement x/abs(x) is used to add -1 to negatives and +1 to positives
-          board[i][j] += (board[i][j] / Math.abs(board[i][j]));
+          //if/else to avoid unintentional div by 0
+          if(board[i][j]==0) board[i][j] = 1;
+          else               board[i][j] += (board[i][j] / Math.abs(board[i][j]));
         }
       }
     }
@@ -52,6 +60,17 @@ public class QueenBoard{
       }
     }
     return true;
+  }
+
+  //for testing purposes
+  private void printBoard(){
+    for(int[] row:board){
+      for(int n:row){
+        if(n>=0) System.out.print(" ");
+        System.out.print(n);
+      }
+      System.out.println("");
+    }
   }
 
   /**
