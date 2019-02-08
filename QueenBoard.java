@@ -132,8 +132,10 @@ public class QueenBoard{
       return true;
     }else{
       for(int col=0;col<board[row].length;col++){
-        if(addQueen(row,col) && solver(row+1)) return true;
-        else removeQueen(row,col);
+        if(board[row][col]==0){
+          if(addQueen(row,col) && solver(row+1)) return true;
+          else removeQueen(row,col);
+        }
       }
       return false;
     }
