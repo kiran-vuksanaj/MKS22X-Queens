@@ -2,31 +2,14 @@ import java.util.*;
 public class QueenBoard{
   public static void main(String[] args){
     QueenBoard q = new QueenBoard(8);
+    q.solve();
+    System.out.println(q);
   }
 
   private int[][] board;
 
   public QueenBoard(int size){
     board = new int[size][size];
-    //TESTING ADDQUEEN,REMOVEQUEEN
-    addQueen(2,3);
-    System.out.println(this);
-    printBoard();
-    addQueen(7,6);
-    System.out.println(this);
-    printBoard();
-    addQueen(7,7);
-    System.out.println(this);
-    printBoard();
-    removeQueen(7,6);
-    System.out.println(this);
-    printBoard();
-    removeQueen(2,3);
-    System.out.println(this);
-    printBoard();
-    removeQueen(7,7);
-    System.out.println(this);
-    printBoard();
   }
 
   private boolean addQueen(int r,int c){
@@ -82,6 +65,27 @@ public class QueenBoard{
       System.out.println("");
     }
   }
+  public void testAddRemove(){
+    //TESTING ADDQUEEN,REMOVEQUEEN
+    addQueen(2,3);
+    System.out.println(this);
+    printBoard();
+    addQueen(7,6);
+    System.out.println(this);
+    printBoard();
+    addQueen(7,7);
+    System.out.println(this);
+    printBoard();
+    removeQueen(7,6);
+    System.out.println(this);
+    printBoard();
+    removeQueen(2,3);
+    System.out.println(this);
+    printBoard();
+    removeQueen(7,7);
+    System.out.println(this);
+    printBoard();
+  }
 
   /**
   *@return The output string formatted as follows:
@@ -120,7 +124,19 @@ public class QueenBoard{
 
   */
   public boolean solve(){
-    return false;
+    return solver(0);
+  }
+  private boolean solver(int row){
+    if(row==board.length){
+      //a branch has reached the end of the board, meaning all spaces have been filled;
+      return true;
+    }else{
+      for(int col=0;col<board[row].length;col++){
+        if(addQueen(row,col) && solver(row+1)) return true;
+        else removeQueen(row,col);
+      }
+      return false;
+    }
   }
 
   /**
