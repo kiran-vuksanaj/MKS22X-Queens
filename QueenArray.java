@@ -31,7 +31,14 @@ public class QueenArray{
       return out;
     }
   }
-  private boolean underAttack(int i){
+  private boolean underAttack(int col){
+    int row = colVals.size();
+    for(int rowInd = 0; rowInd<colVals.size(); rowInd++){
+      if(conflictBetween(row,col,rowInd,colVals.get(rowInd))) return true;
+    }
+    return false;
+  }
+  private boolean conflictBetween(int row1,int col1,int row2,int col2){
     return false;
   }
 }
