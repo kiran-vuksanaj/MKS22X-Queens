@@ -1,8 +1,19 @@
 public class QueenBoard{
+  public static void main(String[] args){
+    QueenBoard q = new QueenBoard(8);
+  }
+
   private int[][] board;
 
   public QueenBoard(int size){
     board = new int[size][size];
+    //TESTING ADDQUEEN,REMOVEQUEEN
+    addQueen(2,3);
+    System.out.println(this);
+    addQueen(7,6);
+    System.out.println(this);
+    addQueen(7,7);
+    System.out.println(this);
   }
 
   private boolean addQueen(int r,int c){
