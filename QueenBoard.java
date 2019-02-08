@@ -149,7 +149,21 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
-    return -1;
+    return counter(0);
+  }
+  private int counter(int row){
+    if(row==board.length) return 1;
+    else{
+      int out = 0;
+      for(int col=0;col<board[row].length;col++){
+        if(board[row][col]==0){
+          addQueen(row,col);
+          out += counter(row+1);
+          removeQueen(row,col);
+        }
+      }
+      return out;
+    }
   }
 
 
