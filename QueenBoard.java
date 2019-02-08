@@ -1,16 +1,22 @@
 import java.util.*;
 public class QueenBoard{
   public static void main(String[] args){
-    QueenBoard q = new QueenBoard(8);
-    System.out.println(q.countSolutions());
-    System.out.println(q);
-    System.out.println(q.solve());
-    System.out.println(q);
-    QueenBoard q3 = new QueenBoard(3);
-    System.out.println(q3.countSolutions());
-    System.out.println(q3);
-    System.out.println(q3.solve());
-    System.out.println(q3);
+    if(args.length >= 1){
+      int size = Integer.parseInt(args[0]);
+      QueenBoard q = new QueenBoard(size);
+      System.out.print(size+": ");
+      System.out.print(q.countSolutions()+", ");
+      System.out.println(q.solve());
+      System.out.println(q);
+    }else{
+      for(int i=0;i<20;i++){
+        QueenBoard q = new QueenBoard(i);
+        System.out.print(i+": ");
+        System.out.print(q.countSolutions()+", ");
+        System.out.println(q.solve());
+        System.out.println(q);
+      }
+    }
   }
 
   private int[][] board;
