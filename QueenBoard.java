@@ -20,7 +20,18 @@ public class QueenBoard{
     return true;
   }
   private boolean removeQueen(int r,int c){
-    return false;
+    for(int i=0;i<board.length;i++){
+      for(int j=0;j<board[i].length;j++){
+        if((r==i)||  //same row
+           (c==j)||  //same column
+           (Math.abs(r-c)==Math.abs(i-j))|| //same backslash diagonal
+           (r+c == i+j)) //same forward slash diagonal
+        {
+          board[i][j] -= 1;
+        }
+      }
+    }
+    return true;
   }
 
   /**
