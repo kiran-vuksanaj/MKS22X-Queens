@@ -6,25 +6,15 @@ public class QueenBoard{
   }
 
   private boolean addQueen(int r,int c){
-    //ADD ATTACK ON ROWS
-    for(int i=0;i<board[r].length;i++){
-      board[r][i] += 1;
-    }
-    //ADD ATTACK ON COLS
     for(int i=0;i<board.length;i++){
-      board[i][c] += 1;
-    }
-    //ADD ATTACK ON DIAGONALS
-    int[] rCycle = {1,1,-1,-1};
-    int[] cCycle = {1,-1,1,-1};
-    int rTemp,cTemp;
-    for(int i=0;i<4;i++){
-      rTemp = r + rCycle[i];
-      cTemp = c + cCycle[i];
-      while(r >= 0 && r<board.length && c >= 0 && c < board.length){
-        board[r][c] += 1;
-        rTemp += rCycle[i];
-        cTemp = cCycle[i];
+      for(int j=0;j<board[i].length;j++){
+        if((r==i)||  //same row
+           (c==j)||  //same column
+           (Math.abs(r-c)==Math.abs(i-j))|| //same backslash diagonal
+           (r+c == i+j)) //same forward slash diagonal
+        {
+          board[i][j] += 1;
+        }
       }
     }
     return true;
