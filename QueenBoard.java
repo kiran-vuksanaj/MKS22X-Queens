@@ -18,6 +18,15 @@ public class QueenBoard{
     addQueen(7,7);
     System.out.println(this);
     printBoard();
+    removeQueen(7,6);
+    System.out.println(this);
+    printBoard();
+    removeQueen(2,3);
+    System.out.println(this);
+    printBoard();
+    removeQueen(7,7);
+    System.out.println(this);
+    printBoard();
   }
 
   private boolean addQueen(int r,int c){
@@ -50,11 +59,12 @@ public class QueenBoard{
       for(int j=0;j<board[i].length;j++){
         if((r==i)||  //same row
            (c==j)||  //same column
-           (Math.abs(r-c)==Math.abs(i-j))|| //same backslash diagonal
+           (r-c == i-j)|| //same backslash diagonal
            (r+c == i+j)) //same forward slash diagonal
         {
           //SPECIAL DESIGNATION: for Queen marked locations, there are negative values
           //to compensate, statement x/abs(x) is used to add -1 to negatives and +1 to positives
+          //issues of dividing by 0 should not arise here
           board[i][j] -= (board[i][j] / Math.abs(board[i][j]));
         }
       }
