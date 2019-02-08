@@ -58,7 +58,15 @@ public class QueenBoard{
   *excludes the character up to the *)
   */
   public String toString(){
-    return "";
+    String out = "";
+    for(int i=0;i<board.length;i++){
+      for(int j=0;j<board[i].length;j++){
+        if(board[i][j] < 0) out += "Q";
+        else                out += ".";
+      }
+      out += "\n";
+    }
+    return out;
   }
 
 
