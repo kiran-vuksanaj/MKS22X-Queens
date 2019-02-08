@@ -2,8 +2,11 @@ import java.util.*;
 public class QueenBoard{
   public static void main(String[] args){
     QueenBoard q = new QueenBoard(8);
-    q.solve();
+    System.out.println(q.solve());
     System.out.println(q);
+    QueenBoard q3 = new QueenBoard(3);
+    System.out.println(q3.solve());
+    System.out.println(q3);
   }
 
   private int[][] board;
