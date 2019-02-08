@@ -14,7 +14,20 @@ public class QueenBoard{
     for(int i=0;i<board.length;i++){
       board[i][c] += 1;
     }
-    return false;
+    //ADD ATTACK ON DIAGONALS
+    int[] rCycle = {1,1,-1,-1};
+    int[] cCycle = {1,-1,1,-1};
+    int rTemp,cTemp;
+    for(int i=0;i<4;i++){
+      rTemp = r + rCycle[i];
+      cTemp = c + cCycle[i];
+      while(r >= 0 && r<board.length && c >= 0 && c < board.length){
+        board[r][c] += 1;
+        rTemp += rCycle[i];
+        cTemp = cCycle[i];
+      }
+    }
+    return true;
   }
   private boolean removeQueen(int r,int c){
     return false;
